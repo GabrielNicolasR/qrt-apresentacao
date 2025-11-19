@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta: Otimização do Fluxo de Tickets QRT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 2em;
+            margin-bottom: 25px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p,
+        li {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .problema-box {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .problema-box h3 {
+            color: white;
+            font-size: 1.8em;
+        }
+
+        .solucao-box {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .solucao-box h3 {
+            color: white;
+            font-size: 1.8em;
+        }
+
+        .beneficio-box {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .beneficio-box h3 {
+            color: white;
+            font-size: 1.8em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-card h4 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: white;
+            font-size: 1em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        ul li:before {
+            content: "✓ ";
+            color: #43e97b;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .comparativo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparativo-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparativo-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparativo-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .dor-container {
+            margin: 40px 0;
+            padding: 30px;
+            border-left: 5px solid #ff6b6b;
+            background: #fff5f5;
+            border-radius: 8px;
+        }
+
+        .arquitetura-box {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 2px solid #667eea;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            padding: 20px 30px;
+            background: white;
+            border-left: 4px solid #667eea;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 16px;
+            margin-top: 50px;
+        }
+
+        .cta-box h2 {
+            color: white;
+        }
+
+        .logo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .metric-badge {
+            display: inline-block;
+            background: #43e97b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .alert-box p {
+            color: #856404;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide">
+            <div class="logo-header">
+                <h1>🎯 Proposta de Otimização</h1>
+                <p class="subtitle">Sistema Inteligente de Triagem de Tickets QRT</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>⚡</h4>
+                    <p>Redução no Tempo de Triagem</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🎯</h4>
+                    <p>Precisão no Direcionamento</p>
+                </div>
+                <div class="stat-card">
+                    <h4>📊</h4>
+                    <p>Visibilidade de Gestão</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: CONTEXTO ATUAL -->
+        <div class="slide">
+            <h1>📋 Contexto Atual</h1>
+
+            <h3>Situação Atual do Fluxo</h3>
+            <p>Hoje, a comunicação de suporte acontece principalmente pelo <strong>Teams</strong> e
+                <strong>Jira</strong>. Os clientes abrem chamados via <strong>VxSuporte</strong>, gerando tickets TECH
+                no Jira.
+            </p>
+
+            <div class="problema-box">
+                <h3>❌ Problema Identificado</h3>
+                <p>Clientes frequentemente enviam solicitações <strong>diretamente nos grupos errados do Teams</strong>,
+                    antes ou sem abrir ticket formal. Isso gera:</p>
+                <ul>
+                    <li>Tickets direcionados aos QRTs incorretos</li>
+                    <li>Retrabalho constante das equipes</li>
+                    <li>Perda de tempo significativa</li>
+                    <li>Falta de priorização adequada</li>
+                    <li>Poluição dos canais de comunicação</li>
+                </ul>
+            </div>
+
+            <h3>QRTs Envolvidos</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0;">
+                <span class="metric-badge">Fundos</span>
+                <span class="metric-badge">Banking</span>
+                <span class="metric-badge">FIDC</span>
+                <span class="metric-badge">Grafeno</span>
+                <span class="metric-badge">Corporate</span>
+                <span class="metric-badge">Investidor</span>
+                <span class="metric-badge">Login e Permissionamento</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: SOLUÇÃO PROPOSTA -->
+        <div class="slide">
+            <h1>💡 Solução Proposta</h1>
+
+            <div class="solucao-box">
+                <h3>🤖 Sistema Inteligente de Triagem Automatizada</h3>
+                <p>Implementar uma solução baseada em <strong>Machine Learning</strong> que classifica automaticamente
+                    os tickets antes de direcioná-los ao QRT correto.</p>
+            </div>
+
+            <h2>Arquitetura Técnica</h2>
+            <div class="arquitetura-box">
+                <h3>🔧 Componentes Principais</h3>
+                <ul>
+                    <li><strong>Transformer (Sentence-BERT)</strong> - Extração semântica do conteúdo do ticket</li>
+                    <li><strong>XGBoost</strong> - Classificador de alta performance para categorização</li>
+                    <li><strong>FastAPI</strong> - API para integração e inferência em tempo real</li>
+                    <li><strong>Data Lake Interno</strong> - Armazenamento seguro e auditável</li>
+                    <li><strong>Power BI/Metabase</strong> - Dashboards para gestão e análise</li>
+                </ul>
+            </div>
+
+            <h3>🎯 Como Funciona</h3>
+            <p>O usuário preenche um formulário simplificado com:</p>
+            <ul>
+                <li>Nome completo</li>
+                <li>CNPJ do cliente (opcional)</li>
+                <li>Resumo do problema</li>
+                <li>Classificação (Incidente, Falha Sistêmica, Requisição, etc.)</li>
+                <li>Categoria principal</li>
+            </ul>
+            <p style="margin-top: 20px;">O sistema então analisa o conteúdo e <strong>recomenda automaticamente o QRT
+                    mais adequado</strong> com percentual de confiança.</p>
+        </div>
+
+        <!-- SLIDE 4: DOR 1 -->
+        <div class="slide">
+            <h1>🔍 Objeção 1: Mais Trabalho para o Cliente</h1>
+
+            <div class="dor-container">
+                <h3>❗ Descrição da Objeção</h3>
+                <p>Se o formulário ficar mais detalhado ou exigir mais passos, o cliente pode sentir que está tendo que
+                    <strong>trabalhar mais</strong> para conseguir suporte. Isso pode gerar:
+                </p>
+                <ul>
+                    <li>Resistência ao uso do sistema</li>
+                    <li>Reclamações sobre complexidade</li>
+                    <li>Retorno ao uso incorreto do Teams</li>
+                    <li>Diminuição da adesão ao processo formal</li>
+                </ul>
+            </div>
+
+            <div class="solucao-box">
+                <h3>✅ Resposta e Solução</h3>
+                <p><strong>Implementar um fluxo inteligente e progressivo de navegação</strong></p>
+                <p>As opções aparecem <strong>conforme o cliente vai preenchendo</strong>, tornando o formulário mais
+                    leve visualmente e menos cansativo.</p>
+
+                <h4 style="color: white; margin-top: 20px;">Exemplo Prático:</h4>
+                <p>1. Cliente escolhe: <strong>"Login e Permissionamento"</strong></p>
+                <p>2. Só então aparecem subtópicos relevantes:</p>
+                <ul>
+                    <li>Reset de senha</li>
+                    <li>Erro de token</li>
+                    <li>Permissão negada</li>
+                    <li>Problema com MFA</li>
+                </ul>
+            </div>
+
+            <div class="beneficio-box">
+                <h3>🎁 Benefícios desta Abordagem</h3>
+                <ul>
+                    <li>O cliente <strong>não vê todas as opções de uma vez</strong> - reduz sobrecarga cognitiva</li>
+                    <li>Experiência parece mais rápida, mesmo tendo mais etapas</li>
+                    <li>Caminho fica claro e guiado - elimina dúvidas</li>
+                    <li>Evita retrabalho porque a categorização será mais precisa</li>
+                    <li>Reduz tempo total de atendimento - cliente ganha no final</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: DOR 2 -->
+        <div class="slide">
+            <h1>🔒 Objeção 2: Dados Sensíveis (Grafeno e Investidor)</h1>
+
+            <div class="dor-container">
+                <h3>❗ Descrição da Objeção</h3>
+                <p>Os produtos <strong>Grafeno</strong> e <strong>Investidor</strong> lidam com informações sensíveis.
+                    Isso traz preocupação sobre:</p>
+                <ul>
+                    <li>Como dados serão tratados em fluxo automatizado</li>
+                    <li>Riscos de segurança e vazamento</li>
+                    <li>Violação de compliance ou regulamentações</li>
+                    <li>Exposição inadequada durante a triagem</li>
+                    <li>Dependência de serviços externos (OpenAI, Google, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="solucao-box">
+                <h3>✅ Resposta e Solução</h3>
+                <p><strong>Agent de IA Próprio, Interno e Escalável</strong></p>
+                <p>Todo o processamento será feito <strong>dentro da infraestrutura da empresa</strong>, sem envio de
+                    dados a serviços externos.</p>
+
+                <h4 style="color: white; margin-top: 20px;">Arquitetura de Segurança:</h4>
+                <ul>
+                    <li>Modelo treinado e hospedado <strong>on-premise</strong> ou em VPC privada</li>
+                    <li>Nenhum dado sai do ambiente corporativo</li>
+                    <li>Transformer local (Sentence-BERT) para embeddings</li>
+                    <li>Anonimização automática de dados sensíveis (PII)</li>
+                    <li>Criptografia AES-256 em repouso e TLS em trânsito</li>
+                </ul>
+            </div>
+
+            <div class="beneficio-box">
+                <h3>🎁 Benefícios de Segurança</h3>
+                <ul>
+                    <li>Garante que <strong>nenhum dado sai do ambiente corporativo</strong></li>
+                    <li>Permite aplicar regras de segurança, auditoria e logs internos</li>
+                    <li>Possibilita treinar o modelo apenas com dados autorizados</li>
+                    <li>Reduz risco de incidentes e atende normas de compliance (LGPD)</li>
+                    <li>Cria base tecnológica que evolui sem depender de terceiros</li>
+                    <li>Controle total sobre o ciclo de vida dos dados</li>
+                </ul>
+            </div>
+
+            <div class="alert-box">
+                <p><strong>⚠️ Importante:</strong> O modelo trabalha apenas com representações numéricas (embeddings) e
+                    categorias - nunca com texto puro armazenado. Dados pessoais são anonimizados antes do
+                    processamento.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DOR 3 -->
+        <div class="slide">
+            <h1>📊 Objeção 3: Falta de Visibilidade para Gestores</h1>
+
+            <div class="dor-container">
+                <h3>❗ Descrição da Objeção</h3>
+                <p>Os gestores <strong>não têm clareza</strong> sobre:</p>
+                <ul>
+                    <li>Quais QRTs estão recebendo tickets errados</li>
+                    <li>Tipos de erros mais comuns</li>
+                    <li>Padrões de categorização incorreta</li>
+                    <li>Eficiência real do processo atual</li>
+                </ul>
+
+                <h4 style="margin-top: 20px; color: #d63031;">Impactos Críticos:</h4>
+                <ul>
+                    <li>❌ Gestores não conseguem atuar na causa raiz</li>
+                    <li>❌ Comunicação com clientes fica genérica</li>
+                    <li>❌ QRTs sobrecarregados com demandas incorretas</li>
+                    <li>❌ Percepção de produtividade distorcida</li>
+                    <li>❌ Impossível medir SLA real de atendimento</li>
+                </ul>
+            </div>
+
+            <div class="solucao-box">
+                <h3>✅ Resposta e Solução</h3>
+                <p><strong>Sistema de Analytics e Monitoramento em Tempo Real</strong></p>
+                <p>Implementar triagem automatizada que <strong>registra e categoriza todos os desvios</strong> de forma
+                    centralizada.</p>
+
+                <h4 style="color: white; margin-top: 20px;">Recursos de Visibilidade:</h4>
+                <ul>
+                    <li>Dashboard executivo com métricas em tempo real</li>
+                    <li>Relatórios automáticos de desvios por QRT</li>
+                    <li>Identificação de padrões e tendências</li>
+                    <li>Heatmap de erros de categorização</li>
+                    <li>Tracking de SLA real vs. esperado</li>
+                </ul>
+            </div>
+
+            <div class="beneficio-box">
+                <h3>🎁 Benefícios para Gestão</h3>
+                <ul>
+                    <li><strong>Relatórios automáticos</strong> sobre quais QRTs mais sofrem com desvios</li>
+                    <li>Visibilidade de <strong>tipos de erros mais frequentes</strong> - facilita comunicação e
+                        treinamento</li>
+                    <li>Tomada de decisão baseada em <strong>dados reais e atualizados</strong></li>
+                    <li>Ajuste de processos e <strong>melhor distribuição de carga</strong> entre QRTs</li>
+                    <li>Redução de desgaste interno - cada desvio rastreado e corrigido</li>
+                    <li>KPIs mensuráveis: Top-1 Accuracy, Top-3 Accuracy, MTTR de triagem</li>
+                </ul>
+            </div>
+
+            <h3>📈 Dashboards Disponíveis</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>85%+</h4>
+                    <p>Meta Top-3 Accuracy</p>
+                </div>
+                <div class="stat-card">
+                    <h4>20-30%</h4>
+                    <p>Redução MTTR Triagem</p>
+                </div>
+                <div class="stat-card">
+                    <h4>100%</h4>
+                    <p>Rastreabilidade</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: COMPARATIVO -->
+        <div class="slide">
+            <h1>⚖️ Comparativo: Antes vs. Depois</h1>
+
+            <table class="comparativo-table">
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Situação Atual</th>
+                        <th>Com a Solução</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Direcionamento</strong></td>
+                        <td>❌ Manual, sujeito a erros</td>
+                        <td>✅ Automático, 85%+ de precisão</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tempo de Triagem</strong></td>
+                        <td>❌ Alto - analista revisa cada ticket</td>
+                        <td>✅ Redução de 20-30% no MTTR</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visibilidade</strong></td>
+                        <td>❌ Nenhuma - erros não registrados</td>
+                        <td>✅ Dashboards em tempo real</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retrabalho</strong></td>
+                        <td>❌ Constante - tickets redirecionados</td>
+                        <td>✅ Minimizado - direcionamento assertivo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Experiência do Cliente</strong></td>
+                        <td>❌ Frustrante - respostas atrasadas</td>
+                        <td>✅ Ágil - atendimento no QRT certo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dados e Insights</strong></td>
+                        <td>❌ Inexistentes</td>
+                        <td>✅ Relatórios estratégicos completos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Segurança</strong></td>
+                        <td>⚠️ Dados trafegam sem controle</td>
+                        <td>✅ On-premise, criptografado, auditável</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Escalabilidade</strong></td>
+                        <td>❌ Limitada - depende de pessoas</td>
+                        <td>✅ Ilimitada - sistema aprende continuamente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SLIDE 8: TIMELINE -->
+        <div class="slide">
+            <h1>📅 Timeline de Implementação</h1>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Fase 0: Preparação (1-2 semanas)</h4>
+                    <p>Definição de escopo, QRTs, checklist inicial e provisionamento de ambiente</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Fase 1: ETL & Data Prep (3 semanas)</h4>
+                    <p>Extração histórico Jira, limpeza, padronização e anonimização de dados</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Fase 2: Embeddings & Feature Store (2 semanas)</h4>
+                    <p>Configuração do Transformer local e criação do Feature Store</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Fase 3: Modelagem (2 semanas)</h4>
+                    <p>Treinamento do XGBoost, validação e calibração de probabilidades</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Fase 4: API & Inferência (2 semanas)</h4>
+                    <p>Desenvolvimento da FastAPI com endpoints de predição e feedback</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Fase 5: Integração e UI (2 semanas)</h4>
+                    <p>Integração com Jira/Teams e desenvolvimento da interface do usuário</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Fase 6: Deploy & Monitoramento (3-4 semanas)</h4>
+                    <p>Deploy em produção, configuração de dashboards e pipeline de retreino</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>10-13</h4>
+                    <p>Semanas até Go-Live</p>
+                </div>
+                <div class="stat-card">
+                    <h4>MVP</h4>
+                    <p>Abordagem Incremental</p>
+                </div>
+                <div class="stat-card">
+                    <h4>100%</h4>
+                    <p>Controle Interno</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: ROI E BENEFÍCIOS -->
+        <div class="slide">
+            <h1>💰 ROI e Benefícios Mensuráveis</h1>
+
+            <h2>Ganhos Quantificáveis</h2>
+
+            <div class="beneficio-box">
+                <h3>⏱️ Redução de Tempo</h3>
+                <ul>
+                    <li><strong>20-30% de redução</strong> no tempo médio de triagem (MTTR)</li>
+                    <li>Minutos economizados por chamado se multiplicam ao longo do mês</li>
+                    <li>Analistas focam em resolução, não em roteamento</li>
+                </ul>
+            </div>
+
+            <div class="beneficio-box">
+                <h3>🎯 Melhoria na Precisão</h3>
+                <ul>
+                    <li><strong>Meta de 85%+</strong> de acurácia Top-3</li>
+                    <li>Redução drástica de reaberturas e tickets redirecionados</li>
+                    <li>Menos desgaste entre equipes</li>
+                </ul>
+            </div>
+
+            <div class="beneficio-box">
+                <h3>📊 Inteligência de Negócio</h3>
+                <ul>
+                    <li>Identificação de padrões e causas raiz</li>
+                    <li>Previsão de demandas e sazonalidade</li>
+                    <li>Base sólida para decisões estratégicas</li>
+                </ul>
+            </div>
+
+            <h2 style="margin-top: 40px;">Retornos Intangíveis</h2>
+            <ul>
+                <li>✅ Melhora na satisfação dos clientes internos</li>
+                <li>✅ Redução de estresse e conflitos entre QRTs</li>
+                <li>✅ Cultura de dados e inovação fortalecida</li>
+                <li>✅ Maior aderência aos processos formais</li>
+                <li>✅ Escalabilidade para novos produtos e QRTs</li>
+            </ul>
+        </div>
+
+        <!-- SLIDE 10: MELHORIAS FUTURAS -->
+        <div class="slide">
+            <h1>🚀 Roadmap de Evolução</h1>
+
+            <h2>Melhorias Futuras Planejadas</h2>
+
+            <h3>Fase 2: Funcionalidades Avançadas</h3>
+            <ul>
+                <li><strong>Sistema de Priorização Automática</strong> - Classificação P1, P2, P3 com base em impacto
+                </li>
+                <li><strong>Análise de Similaridade</strong> - "Este chamado parece com [#12345], solução: ..."</li>
+                <li><strong>Detecção de Anomalias</strong> - Alertas de picos anormais de incidentes</li>
+                <li><strong>Análise de Sentimento</strong> - Detectar urgência e frustração no texto</li>
+            </ul>
+
+            <h3 style="margin-top: 30px;">Fase 3: Inteligência Estratégica</h3>
+            <ul>
+                <li><strong>Relatórios Preditivos</strong> - Antecipação de demandas e gargalos</li>
+                <li><strong>Active Learning</strong> - Modelo prioriza casos duvidosos para revisão humana</li>
+                <li><strong>Model Ensemble</strong> - Combinação de múltiplos modelos para robustez</li>
+                <li><strong>Integração BI Avançada</strong> - Dashboards executivos com drill-down completo</li>
+            </ul>
+
+            <h3 style="margin-top: 30px;">Fase 4: Assistente Inteligente</h3>
+            <ul>
+                <li><strong>Copiloto de Atendimento</strong> - Sugestões de resposta e próximos passos</li>
+                <li><strong>Geração de Documentação</strong> - Padronização automática de descrições técnicas</li>
+                <li><strong>Knowledge Base Inteligente</strong> - Busca semântica em base de soluções</li>
+            </ul>
+
+            <div class="alert-box">
+                <p><strong>💡 Visão de Longo Prazo:</strong> Transformar o sistema de um classificador em uma plataforma
+                    completa de inteligência operacional, reduzindo continuamente o tempo de resolução e aumentando a
+                    qualidade do atendimento.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: SEGURANÇA E COMPLIANCE -->
+        <div class="slide">
+            <h1>🔐 Segurança e Compliance</h1>
+
+            <h2>Arquitetura de Segurança</h2>
+
+            <div class="arquitetura-box">
+                <h3>🛡️ Camadas de Proteção</h3>
+                <ul>
+                    <li><strong>Infraestrutura:</strong> 100% on-premise ou VPC privada</li>
+                    <li><strong>Autenticação:</strong> SSO corporativo (Azure AD / SAML)</li>
+                    <li><strong>Criptografia:</strong> TLS in-transit + AES-256 at-rest</li>
+                    <li><strong>Anonimização:</strong> PII removido antes do processamento</li>
+                    <li><strong>Auditoria:</strong> Logs em SIEM com rastreabilidade completa</li>
+                    <li><strong>RBAC:</strong> Controle de acesso baseado em roles</li>
+                </ul>
+            </div>
+
+            <h2>Conformidade LGPD</h2>
+            <div class="beneficio-box">
+                <h3>✅ Requisitos Atendidos</h3>
+                <ul>
+                    <li>Base legal: Legítimo interesse operacional</li>
+                    <li>Minimização de dados: Apenas informações necessárias</li>
+                    <li>Finalidade específica: Melhoria de processos internos</li>
+                    <li>Transparência: Termo de uso claro para usuários</li>
+                    <li>Direito ao esquecimento: Política de retenção definida</li>
+                    <li>Segurança da informação: Medidas técnicas robustas</li>
+                </ul>
+            </div>
+
+            <h2>Governança de Dados</h2>
+            <ul>
+                <li>📝 <strong>Termo de Uso Interno:</strong> Define escopo e limitações</li>
+                <li>🔒 <strong>Dados proprietários:</strong> IP corporativo protegido</li>
+                <li>🚫 <strong>Uso comercial externo:</strong> Proibido sem autorização</li>
+                <li>⏱️ <strong>Retenção:</strong> Inferências 12 meses, raw 30 dias</li>
+                <li>📊 <strong>Versionamento:</strong> MLflow/DVC para rastreabilidade</li>
+            </ul>
+        </div>
+
+        <!-- SLIDE 12: COMPARATIVO DE ABORDAGENS -->
+        <div class="slide">
+            <h1>🔄 Por que Machine Learning e não Low-Code?</h1>
+
+            <table class="comparativo-table">
+                <thead>
+                    <tr>
+                        <th>Critério</th>
+                        <th>n8n (Low-code)</th>
+                        <th>Machine Learning (Proposta)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Objetivo</strong></td>
+                        <td>Automação rápida de fluxos</td>
+                        <td>Classificação inteligente e insights</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Precisão</strong></td>
+                        <td>⚠️ Média/Baixa (regras fixas)</td>
+                        <td>✅ Alta (aprendizado com histórico)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Escalabilidade</strong></td>
+                        <td>❌ Limitada</td>
+                        <td>✅ Alta - cresce com o uso</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tempo de implantação</strong></td>
+                        <td>✅ 1-2 semanas</td>
+                        <td>⚠️ 10-13 semanas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custo inicial</strong></td>
+                        <td>✅ Baixo</td>
+                        <td>⚠️ Médio/Alto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manutenção</strong></td>
+                        <td>⚠️ Contínua (ajuste manual)</td>
+                        <td>✅ Técnica mas automatizada</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Insights gerados</strong></td>
+                        <td>❌ Limitados</td>
+                        <td>✅ Estratégicos e automáticos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evolução</strong></td>
+                        <td>❌ Estática - não aprende</td>
+                        <td>✅ Aprende continuamente</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance</strong></td>
+                        <td>⚠️ Pode depender de externos</td>
+                        <td>✅ Total controle interno</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="beneficio-box" style="margin-top: 30px;">
+                <h3>🎯 Conclusão</h3>
+                <p>O n8n é excelente para <strong>MVP e prototipagem rápida</strong>, mas o Machine Learning oferece:
+                </p>
+                <ul>
+                    <li>Precisão superior e aprendizado contínuo</li>
+                    <li>Insights estratégicos para tomada de decisão</li>
+                    <li>Escalabilidade para crescimento futuro</li>
+                    <li>ROI sustentável no médio/longo prazo</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: MÉTRICAS DE SUCESSO -->
+        <div class="slide">
+            <h1>📊 Métricas de Sucesso (KPIs)</h1>
+
+            <h2>Indicadores Primários</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>≥65%</h4>
+                    <p>Top-1 Accuracy (meta inicial)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>≥85%</h4>
+                    <p>Top-3 Accuracy (meta inicial)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>20-30%</h4>
+                    <p>Redução MTTR Triagem</p>
+                </div>
+                <div class="stat-card">
+                    <h4>≥60%</h4>
+                    <p>Taxa de Aceitação (após 1 mês)</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Indicadores Secundários</h2>
+            <ul>
+                <li>📉 <strong>Redução de Reaberturas:</strong> Menos tickets voltando por erro de direcionamento</li>
+                <li>⏱️ <strong>Tempo Médio de Resolução:</strong> SLA global melhorado</li>
+                <li>😊 <strong>Satisfação dos Analistas:</strong> Survey trimestral NPS interno</li>
+                <li>🔄 <strong>Taxa de Redirecionamento:</strong> Percentual de tickets que trocam de QRT</li>
+                <li>📈 <strong>Aderência ao Processo:</strong> Uso do sistema vs. Teams direto</li>
+                <li>🎯 <strong>Drift Detection:</strong> Monitoramento de degradação do modelo</li>
+            </ul>
+
+            <h2 style="margin-top: 40px;">Monitoramento Contínuo</h2>
+            <div class="arquitetura-box">
+                <ul>
+                    <li>Dashboards atualizados em tempo real</li>
+                    <li>Alertas automáticos para desvios de performance</li>
+                    <li>Reports semanais para gestores</li>
+                    <li>Análise mensal de tendências e oportunidades</li>
+                    <li>Revisão trimestral de metas e ajustes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: CASOS DE USO -->
+        <div class="slide">
+            <h1>💼 Casos de Uso Práticos</h1>
+
+            <div class="solucao-box">
+                <h3>Caso 1: Cliente reporta erro de autenticação</h3>
+                <p><strong>Situação Atual:</strong></p>
+                <ul>
+                    <li>Cliente envia mensagem no grupo do Teams do Banking</li>
+                    <li>Analista percebe que é problema de Login</li>
+                    <li>Redireciona para QRT Login e Permissionamento</li>
+                    <li>Tempo perdido: 15-30 minutos</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Com a Solução:</strong></p>
+                <ul>
+                    <li>Cliente preenche formulário com descrição do problema</li>
+                    <li>Sistema identifica automaticamente: "Login e Permissionamento" (85% confiança)</li>
+                    <li>Ticket criado diretamente no QRT correto</li>
+                    <li>Tempo economizado: 15-30 minutos por ticket</li>
+                </ul>
+            </div>
+
+            <div class="solucao-box" style="margin-top: 30px;">
+                <h3>Caso 2: Gestor precisa identificar padrão de falhas</h3>
+                <p><strong>Situação Atual:</strong></p>
+                <ul>
+                    <li>Dados dispersos, sem consolidação</li>
+                    <li>Impossível saber quais áreas têm mais problemas</li>
+                    <li>Decisões baseadas em percepção, não em dados</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Com a Solução:</strong></p>
+                <ul>
+                    <li>Dashboard mostra: "Fundos teve 35% mais chamados esta semana"</li>
+                    <li>Drill-down revela: "Problema recorrente com cálculo de cotas"</li>
+                    <li>Gestor prioriza correção e comunica time proativamente</li>
+                    <li>Resultado: Problema resolvido antes de escalar</li>
+                </ul>
+            </div>
+
+            <div class="solucao-box" style="margin-top: 30px;">
+                <h3>Caso 3: Novo QRT sendo criado</h3>
+                <p><strong>Situação Atual:</strong></p>
+                <ul>
+                    <li>Clientes não sabem quando usar o novo QRT</li>
+                    <li>Tickets continuam indo para QRTs antigos</li>
+                    <li>Processo de transição lento e manual</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Com a Solução:</strong></p>
+                <ul>
+                    <li>Sistema é retreinado com dados do novo QRT</li>
+                    <li>Começa a sugerir automaticamente o novo canal</li>
+                    <li>Transição suave e baseada em padrões reais</li>
+                    <li>Reduz curva de aprendizado dos clientes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: RISCOS E MITIGAÇÕES -->
+        <div class="slide">
+            <h1>⚠️ Riscos e Mitigações</h1>
+
+            <table class="comparativo-table">
+                <thead>
+                    <tr>
+                        <th>Risco</th>
+                        <th>Impacto</th>
+                        <th>Mitigação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Resistência dos usuários</strong></td>
+                        <td>Baixa adesão ao sistema</td>
+                        <td>• Treinamento gradual<br>• Interface intuitiva<br>• Comunicação clara de benefícios<br>•
+                            Fase piloto com early adopters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dados históricos insuficientes</strong></td>
+                        <td>Modelo com baixa acurácia inicial</td>
+                        <td>• Coleta retroativa do Jira<br>• Uso de dados sintéticos<br>• Implementação de Active
+                            Learning<br>• Shadow mode para coletar dados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Degradação do modelo (drift)</strong></td>
+                        <td>Queda na performance ao longo do tempo</td>
+                        <td>• Monitoramento contínuo<br>• Retreino automático mensal<br>• Alertas de degradação<br>•
+                            Feedback loop dos analistas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custos de infraestrutura</strong></td>
+                        <td>Orçamento excedido</td>
+                        <td>• Modelo otimizado (MiniLM)<br>• Inferência em CPU<br>• Escalamento gradual<br>• ROI
+                            demonstrável em 6 meses</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complexidade técnica</strong></td>
+                        <td>Dificuldade de manutenção</td>
+                        <td>• Documentação completa<br>• Transfer de conhecimento<br>• Pipeline automatizado<br>•
+                            Suporte especializado inicial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Violação de segurança</strong></td>
+                        <td>Vazamento de dados sensíveis</td>
+                        <td>• Arquitetura 100% interna<br>• Anonimização obrigatória<br>• Criptografia em todas as
+                            camadas<br>• Auditoria e SIEM</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box" style="margin-top: 30px;">
+                <p><strong>💡 Estratégia de Mitigação Geral:</strong> Implementação faseada com gates de validação,
+                    permitindo ajustes antes do rollout completo. Shadow mode nas primeiras semanas para coleta de dados
+                    sem impacto operacional.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 16: EQUIPE E RECURSOS -->
+        <div class="slide">
+            <h1>👥 Equipe e Recursos Necessários</h1>
+
+            <h2>Equipe Técnica</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>1-2</h4>
+                    <p>Data Scientists / ML Engineers</p>
+                </div>
+                <div class="stat-card">
+                    <h4>1-2</h4>
+                    <p>Backend Developers (Python/FastAPI)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>1</h4>
+                    <p>Frontend Developer (UI/UX)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>1</h4>
+                    <p>DevOps / Infra Engineer</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Stakeholders</h2>
+            <ul>
+                <li>🎯 <strong>Product Owner:</strong> Define prioridades e requisitos de negócio</li>
+                <li>🔒 <strong>Segurança da Informação:</strong> Valida conformidade e segurança</li>
+                <li>⚖️ <strong>Jurídico/Compliance:</strong> Aprova termos de uso e LGPD</li>
+                <li>📊 <strong>Gestores de QRT:</strong> Validam classificações e fornecem feedback</li>
+                <li>💼 <strong>Analistas de Suporte:</strong> Testadores e usuários finais</li>
+            </ul>
+
+            <h2 style="margin-top: 40px;">Infraestrutura Necessária</h2>
+            <div class="arquitetura-box">
+                <h3>Hardware / Cloud</h3>
+                <ul>
+                    <li>Servidor on-premise ou VM (8-16 vCPUs, 32GB RAM)</li>
+                    <li>Storage: 500GB para Data Lake inicial</li>
+                    <li>Opcionalmente: GPU para treino (não obrigatório)</li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">Software / Ferramentas</h3>
+                <ul>
+                    <li>Python 3.10+, FastAPI, PostgreSQL</li>
+                    <li>Docker / Kubernetes para containerização</li>
+                    <li>CI/CD: GitHub Actions ou GitLab CI</li>
+                    <li>Monitoramento: ELK Stack ou equivalente</li>
+                    <li>BI: Power BI ou Metabase para dashboards</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 17: INVESTIMENTO -->
+        <div class="slide">
+            <h1>💵 Investimento e TCO (Total Cost of Ownership)</h1>
+
+            <h2>Custos Estimados</h2>
+
+            <div class="arquitetura-box">
+                <h3>Fase 1: Desenvolvimento (10-13 semanas)</h3>
+                <ul>
+                    <li><strong>Equipe técnica:</strong> 5-6 pessoas x 13 semanas</li>
+                    <li><strong>Infraestrutura:</strong> Servidor + storage + ferramentas</li>
+                    <li><strong>Licenças:</strong> Ferramentas de desenvolvimento (se aplicável)</li>
+                    <li><strong>Treinamento:</strong> Capacitação da equipe</li>
+                </ul>
+                <p style="margin-top: 15px; color: #667eea;"><strong>Estimativa:</strong> Variável conforme estrutura
+                    salarial e infra existente</p>
+            </div>
+
+            <div class="arquitetura-box" style="margin-top: 20px;">
+                <h3>Fase 2: Operação (mensal)</h3>
+                <ul>
+                    <li><strong>Infraestrutura:</strong> Servidor, storage, backup</li>
+                    <li><strong>Manutenção:</strong> 0.5-1 pessoa dedicada (DevOps/ML Ops)</li>
+                    <li><strong>Retreino:</strong> Recursos computacionais mensais</li>
+                    <li><strong>Monitoramento:</strong> Ferramentas de observabilidade</li>
+                </ul>
+                <p style="margin-top: 15px; color: #667eea;"><strong>Estimativa:</strong> Custo operacional contínuo
+                    otimizado</p>
+            </div>
+
+            <h2 style="margin-top: 40px;">Retorno Esperado</h2>
+            <div class="beneficio-box">
+                <h3>📈 Ganhos Mensuráveis</h3>
+                <ul>
+                    <li><strong>Economia de tempo:</strong> 20-30% redução em triagem = X horas/mês</li>
+                    <li><strong>Redução de retrabalho:</strong> Menos tickets redirecionados</li>
+                    <li><strong>Melhoria de SLA:</strong> Atendimento mais rápido = maior satisfação</li>
+                    <li><strong>Escalabilidade:</strong> Suporta crescimento sem aumento linear de custos</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Break-even estimado:</strong> 6-9 meses após go-live</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 18: PRÓXIMOS PASSOS -->
+        <div class="slide">
+            <h1>🎬 Próximos Passos</h1>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. Aprovação da Proposta</h4>
+                    <p>Revisão com stakeholders e aprovação executiva</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>2. Formação da Equipe</h4>
+                    <p>Alocação de recursos técnicos e definição de papéis</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>3. Kick-off do Projeto</h4>
+                    <p>Workshop inicial, definição de escopo detalhado e cronograma</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>4. Setup de Infraestrutura</h4>
+                    <p>Provisionamento de ambiente, acessos e ferramentas</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>5. Sprint 0 - Discovery</h4>
+                    <p>Análise exploratória de dados, definição de métricas e baseline</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>6. Desenvolvimento Iterativo</h4>
+                    <p>Sprints de 2 semanas com entregas incrementais</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>7. Piloto com Grupo Selecionado</h4>
+                    <p>Validação com early adopters e coleta de feedback</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>8. Rollout Gradual</h4>
+                    <p>Expansão para todos os QRTs de forma controlada</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <p><strong>🎯 Meta:</strong> Iniciar desenvolvimento em <strong>[DATA_PROPOSTA]</strong> com go-live
+                    previsto para <strong>[DATA_GO_LIVE]</strong></p>
+            </div>
+        </div>
+
+        <!-- SLIDE 19: PERGUNTAS FREQUENTES -->
+        <div class="slide">
+            <h1>❓ Perguntas Frequentes</h1>
+
+            <div class="dor-container">
+                <h3>P: E se o modelo errar a classificação?</h3>
+                <p><strong>R:</strong> O sistema funciona como assistente, não substitui o analista. Se houver erro, o
+                    analista pode corrigir e esse feedback alimenta o retreino do modelo, melhorando continuamente a
+                    precisão.</p>
+            </div>
+
+            <div class="dor-container">
+                <h3>P: Como garantir que dados sensíveis não vazem?</h3>
+                <p><strong>R:</strong> Arquitetura 100% interna (on-premise), anonimização automática de PII,
+                    criptografia em todas as camadas e auditoria completa. Nenhum dado sai do ambiente corporativo.</p>
+            </div>
+
+            <div class="dor-container">
+                <h3>P: O que acontece se a infraestrutura cair?</h3>
+                <p><strong>R:</strong> Fallback para processo manual tradicional. Sistema não é ponto único de falha.
+                    Implementaremos alta disponibilidade e backup automatizado.</p>
+            </div>
+
+            <div class="dor-container">
+                <h3>P: Quanto tempo até ver resultados reais?</h3>
+                <p><strong>R:</strong> Primeiros resultados visíveis após 4-6 semanas (fase piloto). Maturidade plena em
+                    3-6 meses com retreino contínuo e ajustes baseados em feedback.</p>
+            </div>
+
+            <div class="dor-container">
+                <h3>P: Precisa de GPU? É muito caro?</h3>
+                <p><strong>R:</strong> Não obrigatoriamente. Usamos modelo otimizado (MiniLM) que roda em CPU. GPU
+                    apenas acelera o treino, mas não é mandatório para produção.</p>
+            </div>
+
+            <div class="dor-container">
+                <h3>P: E se criarmos novos QRTs ou mudarmos a estrutura?</h3>
+                <p><strong>R:</strong> O sistema é flexível. Basta retreinar o modelo com os novos dados. Pipeline
+                    automatizado facilita esse processo sem necessidade de reescrever código.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 20: CALL TO ACTION -->
+        <div class="slide">
+            <div class="cta-box">
+                <h1 style="color: white; margin-bottom: 30px;">🚀 Hora de Decidir</h1>
+
+                <p style="font-size: 1.3em; margin-bottom: 30px;">
+                    A escolha é entre continuar com processos manuais ineficientes ou transformar digitalmente o
+                    atendimento com inteligência artificial.
+                </p>
+
+                <div class="stats-grid" style="margin: 40px 0;">
+                    <div class="stat-card" style="background: white; color: #667eea;">
+                        <h4 style="color: #667eea;">10-13 semanas</h4>
+                        <p style="color: #333;">Para implementação completa</p>
+                    </div>
+                    <div class="stat-card" style="background: white; color: #667eea;">
+                        <h4 style="color: #667eea;">20-30%</h4>
+                        <p style="color: #333;">Redução no tempo de triagem</p>
+                    </div>
+                    <div class="stat-card" style="background: white; color: #667eea;">
+                        <h4 style="color: #667eea;">85%+</h4>
+                        <p style="color: #333;">Acurácia esperada</p>
+                    </div>
+                </div>
+
+                <h2 style="color: white; margin-top: 50px; margin-bottom: 20px;">Próximo Passo</h2>
+                <p style="font-size: 1.2em;">
+                    Agendar reunião de alinhamento com stakeholders para aprovação e definição de cronograma detalhado.
+                </p>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
+                    <p style="font-size: 1.1em; font-style: italic;">
+                        "A melhor hora para plantar uma árvore foi há 20 anos. A segunda melhor hora é agora."
+                    </p>
+                    <p style="margin-top: 20px;">
+                        Vamos transformar o atendimento juntos? 🤝
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 21: CONTATO -->
+        <div class="slide">
+            <h1>📞 Contato e Informações</h1>
+
+            <div style="text-align: center; margin: 50px 0;">
+                <h2>Responsáveis</h2>
+                <p style="font-size: 1.2em; margin: 20px 0;">
+                    <strong>Gabriel</strong> e <strong>Lucas</strong>
+                </p>
+            </div>
+           
+
+            <div style="text-align: center; margin-top: 50px; padding: 30px; background: #f8f9fa; border-radius: 12px;">
+                <p style="font-size: 1.3em; color: #667eea; font-weight: bold;">
+                    Obrigado pela atenção! 🙏
+                </p>
+                <p style="margin-top: 15px; font-size: 1.1em; color: #666;">
+                    Estamos à disposição para construir o futuro do atendimento
