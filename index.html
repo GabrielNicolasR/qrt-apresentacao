@@ -40,7 +40,8 @@
             <h3>Situação Atual do Fluxo</h3>
             <p>Hoje, a comunicação de suporte acontece principalmente pelo <strong>Teams</strong> e
                 <strong>Jira</strong>. Os clientes abrem chamados via <strong>VxSuporte</strong>, gerando tickets TECH
-                no Jira.</p>
+                no Jira.
+            </p>
 
             <div class="problema-box">
                 <h3>❌ Problema Identificado</h3>
@@ -109,7 +110,8 @@
             <div class="dor-container">
                 <h3>❗ Descrição da Objeção</h3>
                 <p>Se o formulário ficar mais detalhado ou exigir mais passos, o cliente pode sentir que está tendo que
-                    <strong>trabalhar mais</strong> para conseguir suporte. Isso pode gerar:</p>
+                    <strong>trabalhar mais</strong> para conseguir suporte. Isso pode gerar:
+                </p>
                 <ul>
                     <li>Resistência ao uso do sistema</li>
                     <li>Reclamações sobre complexidade</li>
@@ -506,7 +508,7 @@
 
         <!-- SLIDE 12: COMPARATIVO DE ABORDAGENS -->
         <div class="slide">
-            <h1>🔄 Por que Machine Learning e não Low-Code?</h1>
+            <h1>🔄 Por que Machine Learning ou n8n(Low-Code?)</h1>
 
             <table class="comparativo-table">
                 <thead>
@@ -663,316 +665,320 @@
                 </ul>
             </div>
 
-        <!-- SLIDE 15: RISCOS E MITIGAÇÕES -->
-        <div class="slide">
-            <h1>⚠️ Riscos e Mitigações</h1>
+            <!-- SLIDE 15: RISCOS E MITIGAÇÕES -->
+            <div class="slide">
+                <h1>⚠️ Riscos e Mitigações</h1>
 
-            <table class="comparativo-table">
-                <thead>
-                    <tr>
-                        <th>Risco</th>
-                        <th>Impacto</th>
-                        <th>Mitigação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Resistência dos usuários</strong></td>
-                        <td>Baixa adesão ao sistema</td>
-                        <td>• Treinamento gradual<br>• Interface intuitiva<br>• Comunicação clara de benefícios<br>•
-                            Fase piloto com early adopters</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Dados históricos insuficientes</strong></td>
-                        <td>Modelo com baixa acurácia inicial</td>
-                        <td>• Coleta retroativa do Jira<br>• Uso de dados sintéticos<br>• Implementação de Active
-                            Learning<br>• Shadow mode para coletar dados</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Degradação do modelo (drift)</strong></td>
-                        <td>Queda na performance ao longo do tempo</td>
-                        <td>• Monitoramento contínuo<br>• Retreino automático mensal<br>• Alertas de degradação<br>•
-                            Feedback loop dos analistas</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Custos de infraestrutura</strong></td>
-                        <td>Orçamento excedido</td>
-                        <td>• Modelo otimizado (MiniLM)<br>• Inferência em CPU<br>• Escalamento gradual<br>• ROI
-                            demonstrável em 6 meses</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Complexidade técnica</strong></td>
-                        <td>Dificuldade de manutenção</td>
-                        <td>• Documentação completa<br>• Transfer de conhecimento<br>• Pipeline automatizado<br>•
-                            Suporte especializado inicial</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Violação de segurança</strong></td>
-                        <td>Vazamento de dados sensíveis</td>
-                        <td>• Arquitetura 100% interna<br>• Anonimização obrigatória<br>• Criptografia em todas as
-                            camadas<br>• Auditoria e SIEM</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="comparativo-table">
+                    <thead>
+                        <tr>
+                            <th>Risco</th>
+                            <th>Impacto</th>
+                            <th>Mitigação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Resistência dos usuários</strong></td>
+                            <td>Baixa adesão ao sistema</td>
+                            <td>• Treinamento gradual<br>• Interface intuitiva<br>• Comunicação clara de benefícios<br>•
+                                Fase piloto com early adopters</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dados históricos insuficientes</strong></td>
+                            <td>Modelo com baixa acurácia inicial</td>
+                            <td>• Coleta retroativa do Jira<br>• Uso de dados sintéticos<br>• Implementação de Active
+                                Learning
+                        </tr>
+                        <tr>
+                            <td><strong>Degradação do modelo (drift)</strong></td>
+                            <td>Queda na performance ao longo do tempo</td>
+                            <td>• Monitoramento contínuo<br>• Retreino automático mensal<br>• Alertas de degradação<br>•
+                                Feedback loop dos analistas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Custos de infraestrutura</strong></td>
+                            <td>Orçamento excedido</td>
+                            <td>• Modelo otimizado (MiniLM)<br>• Inferência em CPU<br>• Escalamento gradual<br>• ROI
+                                demonstrável em 6 meses</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Complexidade técnica</strong></td>
+                            <td>Dificuldade de manutenção</td>
+                            <td>• Documentação completa<br>• Transfer de conhecimento<br>• Pipeline automatizado<br>•
+                                Suporte especializado inicial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Violação de segurança</strong></td>
+                            <td>Vazamento de dados sensíveis</td>
+                            <td>• Arquitetura 100% interna<br>• Anonimização obrigatória<br>• Criptografia em todas as
+                                camadas<br>• Auditoria e SIEM</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="alert-box" style="margin-top: 30px;">
-                <p><strong>💡 Estratégia de Mitigação Geral:</strong> Implementação faseada com gates de validação,
-                    permitindo ajustes antes do rollout completo. Shadow mode nas primeiras semanas para coleta de dados
-                    sem impacto operacional.</p>
-            </div>
-        </div>
-
-        <!-- SLIDE 16: EQUIPE E RECURSOS -->
-        <div class="slide">
-            <h1>👥 Equipe e Recursos Necessários</h1>
-
-            <h2>Equipe Técnica</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h4>1-2</h4>
-                    <p>Data Scientists / ML Engineers</p>
-                </div>
-                <div class="stat-card">
-                    <h4>1-2</h4>
-                    <p>Backend Developers (Python/FastAPI)</p>
-                </div>
-                <div class="stat-card">
-                    <h4>1</h4>
-                    <p>Frontend Developer (UI/UX)</p>
-                </div>
-                <div class="stat-card">
-                    <h4>1</h4>
-                    <p>DevOps / Infra Engineer</p>
+                <div class="alert-box" style="margin-top: 30px;">
+                    <p><strong>💡 Estratégia de Mitigação Geral:</strong> Implementação faseada com gates de validação,
+                        permitindo ajustes antes do rollout completo.</p>
                 </div>
             </div>
 
-            <h2 style="margin-top: 40px;">Stakeholders</h2>
-            <ul>
-                <li>🎯 <strong>Product Owner:</strong> Define prioridades e requisitos de negócio</li>
-                <li>🔒 <strong>Segurança da Informação:</strong> Valida conformidade e segurança</li>
-                <li>⚖️ <strong>Jurídico/Compliance:</strong> Aprova termos de uso e LGPD</li>
-                <li>📊 <strong>Gestores de QRT:</strong> Validam classificações e fornecem feedback</li>
-                <li>💼 <strong>Analistas de Suporte:</strong> Testadores e usuários finais</li>
-            </ul>
+            <!-- SLIDE 16: EQUIPE E RECURSOS -->
+            <div class="slide">
+                <h1>👥 Equipe e Recursos Necessários</h1>
 
-            <h2 style="margin-top: 40px;">Infraestrutura Necessária</h2>
-            <div class="arquitetura-box">
-                <h3>Hardware / Cloud</h3>
-                <ul>
-                    <li>Servidor on-premise ou VM (8-16 vCPUs, 32GB RAM)</li>
-                    <li>Storage: 500GB para Data Lake inicial</li>
-                    <li>Opcionalmente: GPU para treino (não obrigatório)</li>
-                </ul>
-
-                <h3 style="margin-top: 20px;">Software / Ferramentas</h3>
-                <ul>
-                    <li>Python 3.10+, FastAPI, PostgreSQL</li>
-                    <li>Docker / Kubernetes para containerização</li>
-                    <li>CI/CD: GitHub Actions ou GitLab CI</li>
-                    <li>Monitoramento: ELK Stack ou equivalente</li>
-                    <li>BI: Power BI ou Metabase para dashboards</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- SLIDE 17: INVESTIMENTO -->
-        <div class="slide">
-            <h1>💵 Investimento e TCO (Total Cost of Ownership)</h1>
-
-            <h2>Custos Estimados</h2>
-
-            <div class="arquitetura-box">
-                <h3>Fase 1: Desenvolvimento (10-13 semanas)</h3>
-                <ul>
-                    <li><strong>Equipe técnica:</strong> 5-6 pessoas x 13 semanas</li>
-                    <li><strong>Infraestrutura:</strong> Servidor + storage + ferramentas</li>
-                    <li><strong>Licenças:</strong> Ferramentas de desenvolvimento (se aplicável)</li>
-                    <li><strong>Treinamento:</strong> Capacitação da equipe</li>
-                </ul>
-                <p style="margin-top: 15px; color: #3498db;"><strong>Estimativa:</strong> Variável conforme estrutura
-                    salarial e infra existente</p>
-            </div>
-
-            <div class="arquitetura-box" style="margin-top: 20px;">
-                <h3>Fase 2: Operação (mensal)</h3>
-                <ul>
-                    <li><strong>Infraestrutura:</strong> Servidor, storage, backup</li>
-                    <li><strong>Manutenção:</strong> 0.5-1 pessoa dedicada (DevOps/ML Ops)</li>
-                    <li><strong>Retreino:</strong> Recursos computacionais mensais</li>
-                    <li><strong>Monitoramento:</strong> Ferramentas de observabilidade</li>
-                </ul>
-                <p style="margin-top: 15px; color: #3498db;"><strong>Estimativa:</strong> Custo operacional contínuo
-                    otimizado</p>
-            </div>
-
-            <h2 style="margin-top: 40px;">Retorno Esperado</h2>
-            <div class="beneficio-box">
-                <h3>📈 Ganhos Mensuráveis</h3>
-                <ul>
-                    <li><strong>Economia de tempo:</strong> 20-30% redução em triagem = X horas/mês</li>
-                    <li><strong>Redução de retrabalho:</strong> Menos tickets redirecionados</li>
-                    <li><strong>Melhoria de SLA:</strong> Atendimento mais rápido = maior satisfação</li>
-                    <li><strong>Escalabilidade:</strong> Suporta crescimento sem aumento linear de custos</li>
-                </ul>
-                <p style="margin-top: 20px;"><strong>Break-even estimado:</strong> 6-9 meses após go-live</p>
-            </div>
-        </div>
-
-        <!-- SLIDE 18: PRÓXIMOS PASSOS -->
-        <div class="slide">
-            <h1>🎬 Próximos Passos</h1>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h4>1. Aprovação da Proposta</h4>
-                    <p>Revisão com stakeholders e aprovação executiva</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>2. Formação da Equipe</h4>
-                    <p>Alocação de recursos técnicos e definição de papéis</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>3. Kick-off do Projeto</h4>
-                    <p>Workshop inicial, definição de escopo detalhado e cronograma</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>4. Setup de Infraestrutura</h4>
-                    <p>Provisionamento de ambiente, acessos e ferramentas</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>5. Sprint 0 - Discovery</h4>
-                    <p>Análise exploratória de dados, definição de métricas e baseline</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>6. Desenvolvimento Iterativo</h4>
-                    <p>Sprints de 2 semanas com entregas incrementais</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>7. Piloto com Grupo Selecionado</h4>
-                    <p>Validação com early adopters e coleta de feedback</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h4>8. Rollout Gradual</h4>
-                    <p>Expansão para todos os QRTs de forma controlada</p>
-                </div>
-            </div>
-
-            <div class="alert-box">
-                <p><strong>🎯 Meta:</strong> Iniciar desenvolvimento em <strong>[DATA_PROPOSTA]</strong> com go-live
-                    previsto para <strong>[DATA_GO_LIVE]</strong></p>
-            </div>
-        </div>
-
-        <!-- SLIDE 19: PERGUNTAS FREQUENTES -->
-        <div class="slide">
-            <h1>❓ Perguntas Frequentes</h1>
-
-            <div class="dor-container">
-                <h3>P: E se o modelo errar a classificação?</h3>
-                <p><strong>R:</strong> O sistema funciona como assistente, não substitui o analista. Se houver erro, o
-                    analista pode corrigir e esse feedback alimenta o retreino do modelo, melhorando continuamente a
-                    precisão.</p>
-            </div>
-
-            <div class="dor-container">
-                <h3>P: Como garantir que dados sensíveis não vazem?</h3>
-                <p><strong>R:</strong> Arquitetura 100% interna (on-premise), anonimização automática de PII,
-                    criptografia em todas as camadas e auditoria completa. Nenhum dado sai do ambiente corporativo.</p>
-            </div>
-
-            <div class="dor-container">
-                <h3>P: O que acontece se a infraestrutura cair?</h3>
-                <p><strong>R:</strong> Fallback para processo manual tradicional. Sistema não é ponto único de falha.
-                    Implementaremos alta disponibilidade e backup automatizado.</p>
-            </div>
-
-            <div class="dor-container">
-                <h3>P: Quanto tempo até ver resultados reais?</h3>
-                <p><strong>R:</strong> Primeiros resultados visíveis após 4-6 semanas (fase piloto). Maturidade plena em
-                    3-6 meses com retreino contínuo e ajustes baseados em feedback.</p>
-            </div>
-
-            <div class="dor-container">
-                <h3>P: Precisa de GPU? É muito caro?</h3>
-                <p><strong>R:</strong> Não obrigatoriamente. Usamos modelo otimizado (MiniLM) que roda em CPU. GPU
-                    apenas acelera o treino, mas não é mandatório para produção.</p>
-            </div>
-
-            <div class="dor-container">
-                <h3>P: E se criarmos novos QRTs ou mudarmos a estrutura?</h3>
-                <p><strong>R:</strong> O sistema é flexível. Basta retreinar o modelo com os novos dados. Pipeline
-                    automatizado facilita esse processo sem necessidade de reescrever código.</p>
-            </div>
-        </div>
-
-        <!-- SLIDE 20: CALL TO ACTION -->
-        <div class="slide">
-            <div class="cta-box">
-                <h1 style="color: white; margin-bottom: 30px;">🚀 Hora de Decidir</h1>
-
-                <p style="font-size: 1.3em; margin-bottom: 30px;">
-                    A escolha é entre continuar com processos manuais ineficientes ou transformar digitalmente o
-                    atendimento com inteligência artificial.
-                </p>
-
-                <div class="stats-grid" style="margin: 40px 0;">
-                    <div class="stat-card" style="background: #3498db;">
-                        <h4 style="color: white;">10-13 semanas</h4>
-                        <p style="color: white;">Para implementação completa</p>
+                <h2>Equipe Técnica</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>1-2</h4>
+                        <p>Data Scientists / ML Engineers</p>
                     </div>
-                    <div class="stat-card" style="background: #3498db;">
-                        <h4 style="color: white;">20-30%</h4>
-                        <p style="color: white;">Redução no tempo de triagem</p>
+                    <div class="stat-card">
+                        <h4>1-2</h4>
+                        <p>Backend Developers (Python/FastAPI)</p>
                     </div>
-                    <div class="stat-card" style="background: #3498db;">
-                        <h4 style="color: white;">85%+</h4>
-                        <p style="color: white;">Acurácia esperada</p>
+                    <div class="stat-card">
+                        <h4>1</h4>
+                        <p>Frontend Developer (UI/UX)</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>1</h4>
+                        <p>DevOps / Infra Engineer</p>
                     </div>
                 </div>
 
-                <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
-                    <p style="font-size: 1.1em; font-style: italic;">
-                        "A melhor hora para plantar uma árvore foi há 20 anos. A segunda melhor hora é agora."
-                    </p>
-                    <p style="margin-top: 20px;">
-                        Vamos transformar o atendimento juntos? 🤝
+                <h2 style="margin-top: 40px;">Stakeholders</h2>
+                <ul>
+                    <li>🎯 <strong>Product Owner:</strong> Define prioridades e requisitos de negócio</li>
+                    <li>🔒 <strong>Segurança da Informação:</strong> Valida conformidade e segurança</li>
+                    <li>⚖️ <strong>Jurídico/Compliance:</strong> Aprova termos de uso e LGPD</li>
+                    <li>📊 <strong>Gestores de QRT:</strong> Validam classificações e fornecem feedback</li>
+                    <li>💼 <strong>Analistas de Suporte:</strong> Testadores e usuários finais</li>
+                </ul>
+
+                <h2 style="margin-top: 40px;">Infraestrutura Necessária</h2>
+                <div class="arquitetura-box">
+                    <h3>Hardware / Cloud</h3>
+                    <ul>
+                        <li>Servidor on-premise ou VM (8-16 vCPUs, 32GB RAM)</li>
+                        <li>Storage: 500GB para Data Lake inicial</li>
+                        <li>Opcionalmente: GPU para treino (não obrigatório)</li>
+                    </ul>
+
+                    <h3 style="margin-top: 20px;">Software / Ferramentas</h3>
+                    <ul>
+                        <li>Python 3.10+, FastAPI, PostgreSQL</li>
+                        <li>Docker / Kubernetes para containerização</li>
+                        <li>CI/CD: GitHub Actions ou GitLab CI</li>
+                        <li>Monitoramento: ELK Stack ou equivalente</li>
+                        <li>BI: Power BI ou Metabase para dashboards</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SLIDE 17: INVESTIMENTO -->
+            <div class="slide">
+                <h1>💵 Investimento e TCO (Total Cost of Ownership)</h1>
+
+                <h2>Custos Estimados</h2>
+
+                <div class="arquitetura-box">
+                    <h3>Fase 1: Desenvolvimento (10-13 semanas)</h3>
+                    <ul>
+                        <li><strong>Equipe técnica:</strong> 5-6 pessoas x 13 semanas</li>
+                        <li><strong>Infraestrutura:</strong> Servidor + storage + ferramentas</li>
+                        <li><strong>Licenças:</strong> Ferramentas de desenvolvimento (se aplicável)</li>
+                        <li><strong>Treinamento:</strong> Capacitação da equipe</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #3498db;"><strong>Estimativa:</strong> Variável conforme
+                        estrutura
+                        salarial e infra existente</p>
+                </div>
+
+                <div class="arquitetura-box" style="margin-top: 20px;">
+                    <h3>Fase 2: Operação (mensal)</h3>
+                    <ul>
+                        <li><strong>Infraestrutura:</strong> Servidor, storage, backup</li>
+                        <li><strong>Manutenção:</strong> 0.5-1 pessoa dedicada (DevOps/ML Ops)</li>
+                        <li><strong>Retreino:</strong> Recursos computacionais mensais</li>
+                        <li><strong>Monitoramento:</strong> Ferramentas de observabilidade</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #3498db;"><strong>Estimativa:</strong> Custo operacional contínuo
+                        otimizado</p>
+                </div>
+
+                <h2 style="margin-top: 40px;">Retorno Esperado</h2>
+                <div class="beneficio-box">
+                    <h3>📈 Ganhos Mensuráveis</h3>
+                    <ul>
+                        <li><strong>Economia de tempo:</strong> 20-30% redução em triagem = X horas/mês</li>
+                        <li><strong>Redução de retrabalho:</strong> Menos tickets redirecionados</li>
+                        <li><strong>Melhoria de SLA:</strong> Atendimento mais rápido = maior satisfação</li>
+                        <li><strong>Escalabilidade:</strong> Suporta crescimento sem aumento linear de custos</li>
+                    </ul>
+                    <p style="margin-top: 20px;"><strong>Break-even estimado:</strong> 6-9 meses após go-live</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 18: PRÓXIMOS PASSOS -->
+            <div class="slide">
+                <h1>🎬 Próximos Passos</h1>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>1. Aprovação da Proposta</h4>
+                        <p>Revisão com stakeholders e aprovação executiva</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>2. Formação da Equipe</h4>
+                        <p>Alocação de recursos técnicos e definição de papéis</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>3. Kick-off do Projeto</h4>
+                        <p>Workshop inicial, definição de escopo detalhado e cronograma</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>4. Setup de Infraestrutura</h4>
+                        <p>Provisionamento de ambiente, acessos e ferramentas</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>5. Sprint 0 - Discovery</h4>
+                        <p>Análise exploratória de dados, definição de métricas e baseline</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>6. Desenvolvimento Iterativo</h4>
+                        <p>Sprints de 2 semanas com entregas incrementais</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>7. Piloto com Grupo Selecionado</h4>
+                        <p>Validação com early adopters e coleta de feedback</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>8. Rollout Gradual</h4>
+                        <p>Expansão para todos os QRTs de forma controlada</p>
+                    </div>
+                </div>
+
+                <div class="alert-box">
+                    <p><strong>🎯 Meta:</strong> Iniciar desenvolvimento em <strong>[DATA_PROPOSTA]</strong> com go-live
+                        previsto para <strong>[DATA_GO_LIVE]</strong></p>
+                </div>
+            </div>
+
+            <!-- SLIDE 19: PERGUNTAS FREQUENTES -->
+            <div class="slide">
+                <h1>❓ Perguntas Frequentes</h1>
+
+                <div class="dor-container">
+                    <h3>P: E se o modelo errar a classificação?</h3>
+                    <p><strong>R:</strong> O sistema funciona como assistente, não substitui o analista. Se houver erro,
+                        o
+                        analista pode corrigir e esse feedback alimenta o retreino do modelo, melhorando continuamente a
+                        precisão.</p>
+                </div>
+
+                <div class="dor-container">
+                    <h3>P: Como garantir que dados sensíveis não vazem?</h3>
+                    <p><strong>R:</strong> Arquitetura 100% interna (on-premise), anonimização automática de PII,
+                        criptografia em todas as camadas e auditoria completa. Nenhum dado sai do ambiente corporativo.
                     </p>
                 </div>
+
+                <div class="dor-container">
+                    <h3>P: O que acontece se a infraestrutura cair?</h3>
+                    <p><strong>R:</strong> Fallback para processo manual tradicional. Sistema não é ponto único de
+                        falha.
+                        Implementaremos alta disponibilidade e backup automatizado.</p>
+                </div>
+
+                <div class="dor-container">
+                    <h3>P: Quanto tempo até ver resultados reais?</h3>
+                    <p><strong>R:</strong> Primeiros resultados visíveis após 4-6 semanas (fase piloto). Maturidade
+                        plena em
+                        3-6 meses com retreino contínuo e ajustes baseados em feedback.</p>
+                </div>
+
+                <div class="dor-container">
+                    <h3>P: Precisa de GPU? É muito caro?</h3>
+                    <p><strong>R:</strong> Não obrigatoriamente. Usamos modelo otimizado (MiniLM) que roda em CPU. GPU
+                        apenas acelera o treino, mas não é mandatório para produção.</p>
+                </div>
+
+                <div class="dor-container">
+                    <h3>P: E se criarmos novos QRTs ou mudarmos a estrutura?</h3>
+                    <p><strong>R:</strong> O sistema é flexível. Basta retreinar o modelo com os novos dados. Pipeline
+                        automatizado facilita esse processo sem necessidade de reescrever código.</p>
+                </div>
             </div>
+
+            <!-- SLIDE 20: CALL TO ACTION -->
+            <div class="slide">
+                <div class="cta-box">
+                    <h1 style="color: white; margin-bottom: 30px;">🚀 Hora de Decidir</h1>
+
+                    <p style="font-size: 1.3em; margin-bottom: 30px;">
+                        A escolha é entre continuar com processos manuais ineficientes ou transformar digitalmente o
+                        atendimento com inteligência artificial.
+                    </p>
+
+                    <div class="stats-grid" style="margin: 40px 0;">
+                        <div class="stat-card" style="background: #3498db;">
+                            <h4 style="color: white;">10-13 semanas</h4>
+                            <p style="color: white;">Para implementação completa</p>
+                        </div>
+                        <div class="stat-card" style="background: #3498db;">
+                            <h4 style="color: white;">20-30%</h4>
+                            <p style="color: white;">Redução no tempo de triagem</p>
+                        </div>
+                        <div class="stat-card" style="background: #3498db;">
+                            <h4 style="color: white;">85%+</h4>
+                            <p style="color: white;">Acurácia esperada</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
+                        <p style="font-size: 1.1em; font-style: italic;">
+                            "A melhor hora para plantar uma árvore foi há 20 anos. A segunda melhor hora é agora."
+                        </p>
+                        <p style="margin-top: 20px;">
+                            Vamos transformar o atendimento juntos? 🤝
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 21: CONTATO -->
+            <div class="slide">
+                <h1>📞Informações</h1>
+
+                <div style="text-align: center; margin: 50px 0;">
+                    <h2>Equipe Responsável</h2>
+                    <p style="font-size: 1.2em; margin: 20px 0;">
+                        <strong>Gabriel</strong> e <strong>Lucas</strong>
+                    </p>
+                </div>
+
+                <div
+                    style="text-align: center; margin-top: 50px; padding: 30px; background: #1c2833; border-radius: 12px; border: 1px solid #34495e;">
+                    <p style="font-size: 1.3em; color: #5dade2; font-weight: bold;">
+                        Obrigado pela atenção! 🙏
+                    </p>
+                    <p style="margin-top: 15px; font-size: 1.1em; color: #ecf0f1;">
+                        Estamos à disposição para construir o futuro do atendimento
+                    </p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- SLIDE 21: CONTATO -->
-        <div class="slide">
-            <h1>📞Informações</h1>
-
-            <div style="text-align: center; margin: 50px 0;">
-                <h2>Equipe Responsável</h2>
-                <p style="font-size: 1.2em; margin: 20px 0;">
-                    <strong>Gabriel</strong> e <strong>Lucas</strong>
-                </p>
-            </div>
-
-            <div
-                style="text-align: center; margin-top: 50px; padding: 30px; background: #1c2833; border-radius: 12px; border: 1px solid #34495e;">
-                <p style="font-size: 1.3em; color: #5dade2; font-weight: bold;">
-                    Obrigado pela atenção! 🙏
-                </p>
-                <p style="margin-top: 15px; font-size: 1.1em; color: #ecf0f1;">
-                    Estamos à disposição para construir o futuro do atendimento
-                </p>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="js/index.js"></script>
+        <script src="js/index.js"></script>
 </body>
 
 </html>
